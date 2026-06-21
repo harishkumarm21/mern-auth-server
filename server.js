@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import connectDB from "./config/mongodb.js";
 
 import authRouter from './routes/authRoutes.js'
+import userRouter from "./routes/userRoutes.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(cors({credentials: true}));
 
 //API END POINTS
 app.use("/api/auth", authRouter);
+app.use("/api/user", userRouter);
 app.use("/", (req, res)=>res.send("api is working"));
 
 app.listen(port, ()=>console.log(`Server is listening on port: ${port}`));
