@@ -13,13 +13,15 @@ const port = process.env.PORT || 4000;
 
 connectDB();
 
+const allowedOrigins = ['http://localhost:5173']
+
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({credentials: true}));
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 
 //API END POINTS
 app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
-app.use("/", (req, res)=>res.send("api is working"));
+app.use("/", (req, res) => res.send("api is working"));
 
-app.listen(port, ()=>console.log(`Server is listening on port: ${port}`));
+app.listen(port, () => console.log(`Server is listening on port: ${port}`));
